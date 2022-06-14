@@ -1,15 +1,13 @@
 // File Name Single Page PDF
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.activation.*;
-
-import java.awt.image.BufferedImage;
-import java.awt.*;
-
-import java.net.*;
-import javax.imageio.ImageIO;
+import java.net.URLDecoder;
+import java.util.Base64;
+import java.util.Map;
 
  
 public class MakeSinglepagePDFServlet extends HttpServlet {
@@ -91,7 +89,7 @@ public class MakeSinglepagePDFServlet extends HttpServlet {
 					
 
 			String converterLocation = "";
-			String ax2020_executable = "";
+			String ax_executable = "";
 			String fileLocation = "";
 			String licenseLocation = "";
 			String xpathLocation = "";
@@ -99,8 +97,8 @@ public class MakeSinglepagePDFServlet extends HttpServlet {
 			if (getServletConfig().getInitParameter("converterLocation") != null)
 				converterLocation = getServletConfig().getInitParameter("converterLocation");
 
-			if (getServletConfig().getInitParameter("ax2020_executable") != null)
-				ax2020_executable = getServletConfig().getInitParameter("ax2020_executable");
+			if (getServletConfig().getInitParameter("ax_executable") != null)
+				ax_executable = getServletConfig().getInitParameter("ax_executable");
 
 			if (getServletConfig().getInitParameter("fileLocation") != null)
 				fileLocation = getServletConfig().getInitParameter("fileLocation");
@@ -115,7 +113,7 @@ public class MakeSinglepagePDFServlet extends HttpServlet {
 	//   Here we change to calling bat file to convert server side			
 			
 			String[] str_arr = new String[6];   
-			str_arr[0] =  converterLocation + ax2020_executable;
+			str_arr[0] =  converterLocation + ax_executable;
 			str_arr[1] =  "-i=\""+fileLocation + "/" + fileNameArray0 + ".png"+"\"";
 			str_arr[2] =  "-0=\""+fileLocation + "/" + fileNameArray0 + ".png"+"\"";
 			str_arr[3] =  "-f=pdf";

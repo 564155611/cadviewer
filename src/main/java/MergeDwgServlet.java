@@ -1,9 +1,9 @@
-
-import javax.servlet.http.*;
-import javax.servlet.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -81,15 +81,15 @@ public final void doPost(HttpServletRequest request, HttpServletResponse respons
 
 		
 		String dwgmergeLocation = "";
-		String dwgmerge2020_executable = "";
+		String dwgmerge_executable = "";
 			
 		if (getServletConfig().getInitParameter("dwgmergeLocation") != null)
 			dwgmergeLocation = getServletConfig().getInitParameter("dwgmergeLocation");
 
-		if (getServletConfig().getInitParameter("dwgmerge2020_executable") != null)
-			dwgmerge2020_executable = getServletConfig().getInitParameter("dwgmerge2020_executable");
+		if (getServletConfig().getInitParameter("dwgmerge_executable") != null)
+			dwgmerge_executable = getServletConfig().getInitParameter("dwgmerge_executable");
 	
-		String executable = dwgmergeLocation + '/' + dwgmerge2020_executable;
+		String executable = dwgmergeLocation + '/' + dwgmerge_executable;
 
 		
 		String[] str_arr = new String[6];   

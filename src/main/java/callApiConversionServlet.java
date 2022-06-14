@@ -143,7 +143,7 @@ public final void doPost(HttpServletRequest request, HttpServletResponse respons
 	String fileLocation = "";
 	String fileLocationUrl = "";
 	String converterLocation = "";
-	String ax2020_executable = "";
+	String ax_executable = "";
 	String licenseLocation = "";
 	String xpathLocation = "";
 	String callbackMethod = "";
@@ -178,8 +178,8 @@ public final void doPost(HttpServletRequest request, HttpServletResponse respons
 	if (getServletConfig().getInitParameter("converterLocation") != null)
 		converterLocation = getServletConfig().getInitParameter("converterLocation");
 
-	if (getServletConfig().getInitParameter("ax2020_executable") != null)
-		ax2020_executable = getServletConfig().getInitParameter("ax2020_executable");
+	if (getServletConfig().getInitParameter("ax_executable") != null)
+		ax_executable = getServletConfig().getInitParameter("ax_executable");
 
 	if (getServletConfig().getInitParameter("licenseLocation") != null)
 		licenseLocation = getServletConfig().getInitParameter("licenseLocation");
@@ -351,8 +351,8 @@ public final void doPost(HttpServletRequest request, HttpServletResponse respons
 								if (param_name.indexOf("converterLocation")==0 && param_name.length()==17)
 									converterLocation = param_value;
 								
-								if (param_name.indexOf("ax2020_executable")==0 && param_name.length()==17)
-									ax2020_executable = param_value;
+								if (param_name.indexOf("ax_executable")==0 && param_name.length()==17)
+									ax_executable = param_value;
 								
 								if (param_name.indexOf("licenseLocation")==0 && param_name.length()==15)
 									licenseLocation = param_value;
@@ -600,7 +600,7 @@ public final void doPost(HttpServletRequest request, HttpServletResponse respons
 
 			// we have an url on this server	
 				
-				contentLocation =  contentLocation.replace(ServerUrl, ServerLocation);			
+				contentLocation =  contentLocation.replace(ServerUrl, ServerLocation);
 				writeFile = contentLocation;
 				
 			}
@@ -700,7 +700,7 @@ public final void doPost(HttpServletRequest request, HttpServletResponse respons
 
    		// we have set the permission to the file on Server
 //		try{
-			Path path2 = Paths.get(converterLocation+ax2020_executable);
+			Path path2 = Paths.get(converterLocation+ax_executable);
 			if (!Files.exists(path2)) Files.createFile(path2);
 			Set<PosixFilePermission> perms2 = Files.readAttributes(path2,PosixFileAttributes.class).permissions();
 	  
@@ -724,7 +724,7 @@ public final void doPost(HttpServletRequest request, HttpServletResponse respons
 		
 			
 		// let us build a command line
-		//String commandLine = converterLocation+ax2020_executable+" -i="+writeFile+" -o="+ fileLocation + tempFileName + ".svg -f=svg -model";
+		//String commandLine = converterLocation+ax_executable+" -i="+writeFile+" -o="+ fileLocation + tempFileName + ".svg -f=svg -model";
 
 
 		// let us determine the output format
@@ -780,7 +780,7 @@ public final void doPost(HttpServletRequest request, HttpServletResponse respons
 		str_arr = new String[4+paramCount];
 
 //			str_arr[0] =  converterLocation+"run_ax2020.bat";
-		str_arr[0] =  converterLocation+ax2020_executable;
+		str_arr[0] =  converterLocation+ax_executable;
 		
 		
 // 2022-01-25		
@@ -1020,9 +1020,6 @@ private static String buildErrorMessage(Throwable e) {
 
     return msg;
 }
-
-
-
 
 
 }
